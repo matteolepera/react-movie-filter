@@ -21,6 +21,15 @@ function App() {
 
       <main>
         <div className="container">
+
+          <select className="form-select mt-3">
+            <option selected>Seleziona un genere</option>
+            <option value="1">Fantascienza</option>
+            <option value="2">Thriller</option>
+            <option value="3">Romantico</option>
+            <option value="4">Azione</option>
+          </select>
+
           <div className="row">
 
             {films.map((film, index) =>

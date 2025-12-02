@@ -31,7 +31,7 @@ function App() {
                     <h6 className="card-subtitle mb-2 text-body-secondary">{film.genre}</h6>
                     <p className="card-text">Descrizione:</p>
                     <a href="#" className="card-link">Aggiungi nei preferiti</a>
-                    <a href="#" className="card-link">Guarda ora</a>
+                    <a href="#" className="card-link">Guarda ora!</a>
                   </div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import logo from "./assets/img/notflix-logo.png"
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,6 +6,19 @@ import { films } from "./data/films"
 
 
 function App() {
+
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [filteredGenre, setFilteredGenre] = useState(films);
+
+  useEffect(() => {
+    if (selectedGenre === "Seleziona un genere" || selectedGenre === "") {
+      setFilteredGenre(films);
+      return
+    }
+    const filterGenreArray = films.filter((film) => film.genre === selectedGenre);
+    setFilteredGenre(filterGenreArray);
+  }, [selectedGenre])
+
 
   return (
     <>
@@ -22,17 +35,18 @@ function App() {
       <main>
         <div className="container">
 
-          <select className="form-select mt-3">
-            <option selected>Seleziona un genere</option>
-            <option value="1">Fantascienza</option>
-            <option value="2">Thriller</option>
-            <option value="3">Romantico</option>
-            <option value="4">Azione</option>
+          <select className="form-select mt-3"
+            value={selectedGenre} onChange={(event) => setSelectedGenre(event.target.value)}>
+            <option value="">Seleziona un genere</option>
+            <option value="Fantascienza">Fantascienza</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Romantico">Romantico</option>
+            <option value="Azione">Azione</option>
           </select>
 
           <div className="row">
 
-            {films.map((film, index) =>
+            {filteredGenre.map((film, index) =>
               <div key={index} className="col-4 mt-3">
                 <div className="card">
                   <div className="card-body">
@@ -51,7 +65,7 @@ function App() {
 
         </div>
 
-      </main>
+      </main >
 
     </>
   )
